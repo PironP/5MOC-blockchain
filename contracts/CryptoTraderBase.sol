@@ -1,6 +1,6 @@
 pragma solidity >=0.4.21 <0.7.0;
 
-import "./Ownable.sol";
+import "./Ownable/Ownable.sol";
 import "./Helper/ArrayHelper.sol";
 import "./Helper/RandomHelper.sol";
 
