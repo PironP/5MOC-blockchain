@@ -2,7 +2,12 @@ pragma solidity >=0.4.21 <0.7.0;
 
 import "./CryptoTraderBase.sol";
 
+/// @title InternalContract for CryptoTrader. Extends CryptoTraderBase. Defines internal functions.
+/// @author Quentin Brunet, Pierre Piron, Léo Legron, Prescilla Lecurieux
+/// @notice Student project, may contain bugs and security issues.
 contract CryptoTraderInternal is CryptoTraderBase {
+    /// @notice Restart competition after current one has been closed.
+    /// @return void
     function _restartCompetition() internal {
         startTimestamp = now;
         currentCompetition++;
@@ -14,6 +19,8 @@ contract CryptoTraderInternal is CryptoTraderBase {
         }
     }
 
+    /// @notice Find the competition winner (the one who has the bigger balance) and return it.
+    /// @return address payable (winner)
     function _getWinner(address[] memory traders, uint[] memory balances) internal pure returns (address payable) {
         uint maxBalance = balances[0];
         uint indexWinner = 0;
@@ -30,6 +37,8 @@ contract CryptoTraderInternal is CryptoTraderBase {
         return address(uint160(winner));
     }
 
+    /// @notice Calculate the total balance of a trader in virtual coin.
+    /// @return uint
     function _getTotalBalance(uint _competitionId, address _trader) internal view returns (uint) {
         return competitionToTraderToCurrencyToBalance[_competitionId][_trader][virtualCurrency] +
             competitionToTraderToCurrencyToBalance[_competitionId][_trader][realCurrency] /

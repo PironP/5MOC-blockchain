@@ -1,7 +1,25 @@
 {
-  "name": "blockchain",
+  "name": "cryptotrader",
   "version": "1.0.0",
-  "description": "",
+  "description": "A smart contract to challenge your trader friends",
+  "contributors": [
+    {
+      "name": "Quentin Brunet",
+      "email": "hello@quentinbrunet.com"
+    },
+    {
+      "name": "Pierre Piron",
+      "email": "piron.pierre@gmail.com"
+    },
+    {
+      "name": "Léo Legron",
+      "email": "leo.legron@gmail.com"
+    },
+    {
+      "name": "Prescilla Lecurieux",
+      "email": "prescilla.lecurieux@gmail.com"
+    }
+  ],
   "main": "truffle-config.js",
   "directories": {
     "test": "test"

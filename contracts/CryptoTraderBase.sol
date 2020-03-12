@@ -4,6 +4,9 @@ import "./Ownable.sol";
 import "./Helper/ArrayHelper.sol";
 import "./Helper/RandomHelper.sol";
 
+/// @title BaseContract for CryptoTrader. Defines mappings, variables, events and modifiers.
+/// @author Quentin Brunet, Pierre Piron, Léo Legron, Prescilla Lecurieux
+/// @notice Student project, may contain bugs and security issues.
 contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper {
     mapping (uint => mapping (address => mapping (string => uint))) competitionToTraderToCurrencyToBalance;
     mapping (uint => address[]) competitionToTraders;
@@ -17,12 +20,17 @@ contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper {
 
     event CloseCompetition(address winner, address[] traders, uint[] balances);
 
+    /// @notice Allow anyone to get current real currency price.
+    /// @return uint
     function getPrice() public view returns (uint) {
         // TODO: implement price feeder method
         return _random();
     }
 
-    // Return true if the trader (param1) is in the competition (param2)
+    /// @notice Check if trader participate to given competition.
+    /// @param _trader (trader address)
+    /// @param _competitionId (given competition)
+    /// @return bool (true if the trader is in the competition)
     function _participate(address _trader, uint _competitionId) private view returns (bool) {
         address[] memory traders = competitionToTraders[_competitionId];
         bool participant = false;
