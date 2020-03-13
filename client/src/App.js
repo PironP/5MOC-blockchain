@@ -67,11 +67,11 @@ class App extends Component {
                       Home
                     </Button>
                   </Link>
-                  <Link to="/statistic" className="navButton">
+                  {/* <Link to="/statistic" className="navButton">
                     <Button variant="contained" color="primary">
                       Statistic
                     </Button>
-                  </Link>
+                  </Link> */}
                   <Link to="/competition" className="navButton">
                     <Button variant="contained" color="primary">
                       Competition
@@ -88,16 +88,16 @@ class App extends Component {
                 <Route path="/account">
                     <HomeComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
                 </Route>
-                <Route path="/statistic">
+                {/* <Route path="/statistic">
                   <StatisticComponent />
-                </Route>
+                </Route> */}
                 <Route path="/competition">
                   <CompetitionComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
                 </Route>
                 <Route path="/">
                   <h1 className="welcomeDiv">Welcome to Crypto Trader</h1>
                 </Route>
-              </Switch>        
+              </Switch>
             </div>
           </div>
         }

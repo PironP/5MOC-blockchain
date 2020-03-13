@@ -8,10 +8,12 @@ export default class CompetitionComponent extends Component {
         this.state = {
             etherPrice: '',
             buyPrice: 0,
+            sellPrice: 0,
             balanceVirtual: '',
             balanceEth: ''
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeSell = this.handleChangeSell.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -35,12 +37,24 @@ export default class CompetitionComponent extends Component {
 
     handleChange(event) {
         this.setState({buyPrice: event.target.value});
-      }
+    }
+
+    handleChangeSell(event) {
+        this.setState({sellPrice: event.target.value});
+    }
 
     handleSubmit(event) {}
-    
+
     buy = () => {
         this.props.contract.methods.trade(true, this.props.web3.utils.toWei(this.state.buyPrice)).send({from: this.props.accounts[0]})
+        .then(res => {
+            this.setData(this.props.contract)
+        })
+        .catch(console.error)
+    }
+
+    sell = () => {
+        this.props.contract.methods.trade(false, this.props.web3.utils.toWei(this.state.sellPrice)).send({from: this.props.accounts[0]})
         .then(res => {
             this.setData(this.props.contract)
         })
@@ -63,9 +77,19 @@ export default class CompetitionComponent extends Component {
                     </label>
                     <br/>
                     <Input type="number" value={this.state.buyPrice} onChange={this.handleChange}/>ETH => {this.state.buyPrice*this.state.etherPrice} $
-                    
+
                 </form>
-                <Button onClick={() => {this.buy()}}>Acheter</Button>
+                <Button variant="contained" color="primary" onClick={() => {this.buy()}}>Acheter</Button>
+                <hr />
+                <form>
+                    <label>
+                        Nombre d'Ether à vendre :
+                    </label>
+                    <br/>
+                    <Input type="number" value={this.state.sellPrice} onChange={this.handleChangeSell}/>ETH => {this.state.sellPrice*this.state.etherPrice} $
+
+                </form>
+                <Button variant="contained" color="primary" onClick={() => {this.sell()}}>Vendre</Button>
              </div>
          </div>
         )
