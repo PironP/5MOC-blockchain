@@ -46,31 +46,31 @@ contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper {
     }
 
     modifier isClosable() {
-        require(now >= startTimestamp + competitionDuration, "Competition is not closable.");
-        require(currentCompetition == currentCompetition, "This is not the current competition.");
+        require(now >= startTimestamp + competitionDuration, "Competition is not closable");
+        require(currentCompetition == currentCompetition, "This is not the current competition");
         _;
     }
 
     modifier isFutureCompetition(uint _competitionId) {
-        require(_competitionId > currentCompetition, "The competition is over or is running.");
+        require(_competitionId > currentCompetition, "The competition is over or is running");
         _;
     }
 
     modifier isParticipant(address _trader, uint _competitionId) {
-        require(_participate(_trader, _competitionId), "Trader is not in the competition.");
+        require(_participate(_trader, _competitionId), "Trader is not in the competition");
         _;
     }
 
     modifier isNotParticipant(address _trader, uint _competitionId) {
-        require(!_participate(_trader, _competitionId), "Trader is already in the competition.");
+        require(!_participate(_trader, _competitionId), "Trader is already in the competition");
         _;
     }
 
     modifier hasSufficientBalance(bool _buy, address _trader, uint _amount) {
         if (true == _buy) {
-            require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][virtualCurrency] >= _amount * getPrice(), "Not sufficient virtual currency balance to buy.");
+            require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][virtualCurrency] >= _amount * getPrice(), "Not sufficient virtual currency balance to buy");
         } else {
-            require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][realCurrency] >= _amount, "Not sufficient real currency balance to sell.");
+            require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][realCurrency] >= _amount, "Not sufficient real currency balance to sell");
         }
         _;
     }
