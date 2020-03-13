@@ -7,7 +7,6 @@ import "./CryptoTraderBase.sol";
 /// @notice Student project, may contain bugs and security issues.
 contract CryptoTraderInternal is CryptoTraderBase {
     /// @notice Restart competition after current one has been closed.
-    /// @return void
     function _restartCompetition() internal {
         startTimestamp = now;
         currentCompetition++;

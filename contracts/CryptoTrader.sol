@@ -7,7 +7,6 @@ import "./CryptoTraderInternal.sol";
 /// @notice Student project, may contain bugs and security issues.
 contract CryptoTrader is CryptoTraderInternal {
     /// @notice Allow trader to join a competition with a small participation fee.
-    /// @return void
     function joinCompetition(
         uint _competitionId
     ) external payable isFutureCompetition(_competitionId) isNotParticipant(msg.sender, _competitionId) {
@@ -16,7 +15,6 @@ contract CryptoTrader is CryptoTraderInternal {
     }
 
     /// @notice Allow trader to leave a competition (refund the participation fee).
-    /// @return void
     function leaveCompetition(
         uint _competitionId
     ) external isFutureCompetition(_competitionId) isParticipant(msg.sender, _competitionId) {
@@ -28,7 +26,6 @@ contract CryptoTrader is CryptoTraderInternal {
     /// @notice Allow trader to make a trader (buy or sell).
     /// @param _buy (true => buy / false => sell)
     /// @param _amount (real currency amount to buy/sell in Wei)
-    /// @return void
     function trade(
         bool _buy,
         uint _amount
@@ -51,7 +48,6 @@ contract CryptoTrader is CryptoTraderInternal {
     }
 
     /// @notice Allow trader to close current competition. Start the next competition straight after.
-    /// @return void
     function closeCompetition() external isClosable isParticipant(msg.sender, currentCompetition) {
         address[] memory traders = competitionToTraders[currentCompetition];
         uint[] memory balances = new uint[](traders.length);
