@@ -49,26 +49,28 @@ contract CryptoTrader is CryptoTraderInternal {
 
     /// @notice Allow trader to close current competition. Start the next competition straight after.
     function closeCompetition() external isClosable isParticipant(msg.sender, currentCompetition) {
-        address[] memory traders = competitionToTraders[currentCompetition];
-        uint[] memory balances = new uint[](traders.length);
+        _closeCompetition();
+    }
 
-
-        for (uint i = 0; i < traders.length; i++) {
-            balances[i] = _getTotalBalance(currentCompetition, traders[i]);
-        }
-
-        address payable winner = _getWinner(traders, balances);
-
-        winner.transfer(address(this).balance);
-
-        emit CloseCompetition(winner, traders, balances);
-
-        _restartCompetition();
+    /// @notice Allow owner to close current competition. Start the next competition straight after.
+    function forceCloseCompetition() external onlyOwner {
+        _closeCompetition();
     }
 
     /// @notice Get trader for given competition.
     /// @return address[]
     function getTraders(uint _competitionId) external view returns (address[] memory) {
         return competitionToTraders[_competitionId];
+    }
+
+    /// @notice Get balances of a trader for a given competition.
+    /// @return uint[] (0 = virtualCurrency / 1 = realCurrency)
+    function getBalances(uint _competitionId, address _trader) external view returns (uint[] memory) {
+        uint[] memory balances = new uint[](2);
+
+        balances[0] = competitionToTraderToCurrencyToBalance[_competitionId][_trader][virtualCurrency];
+        balances[1] = competitionToTraderToCurrencyToBalance[_competitionId][_trader][realCurrency];
+
+        return balances;
     }
 }
