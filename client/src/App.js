@@ -51,7 +51,7 @@ class App extends Component {
     if(this.state.web3 != null){
       return (
         <Router> {
-          <div className="App">
+          <div>
             <div className="navBar">
               <h3 className="appName">Crypto Trader</h3>
               <nav>
@@ -74,6 +74,7 @@ class App extends Component {
                 </ul>
               </nav>
             </div>
+            <div className="App">
               <Switch>
                 <Route path="/account">
                     <HomeComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
@@ -84,9 +85,13 @@ class App extends Component {
                 <Route path="/competition">
                   <CompetitionComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
                 </Route>
+                <Route path="/">
+                  <h1 className="welcomeDiv">Welcome to Crypto Trader</h1>
+                </Route>
               </Switch>        
             </div>
-          }
+          </div>
+        }
         </Router>
       )
     } else {
