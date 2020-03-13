@@ -65,4 +65,10 @@ contract CryptoTrader is CryptoTraderInternal {
 
         _restartCompetition();
     }
+
+    /// @notice Get trader for given competition.
+    /// @return address[]
+    function getTraders(uint _competitionId) external view returns (address[] memory) {
+        return competitionToTraders[_competitionId];
+    }
 }
