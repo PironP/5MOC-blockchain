@@ -64,7 +64,7 @@ export default class HomeComponent extends Component {
             const participate = item.traders.includes(this.props.accounts[0])
             const canParticipate = item.competitionId !== this.state.currentCompetitionId
             cards.push(
-                <Card style={ item.traders.includes(this.props.accounts[0]) ? { backgroundColor:'green', marginTop: '15px'} : {backgroundColor:'red', marginTop: '15px'}} 
+                <Card style={ item.traders.includes(this.props.accounts[0]) ? { backgroundColor:'green', margin: "0 auto",marginTop: '15px', width: '300px'} : {backgroundColor:'red', margin: "0 auto", marginTop: '15px', width: '300px'}} 
                     key={item.competitionId}>
                     <CardContent>
                         <Typography>
@@ -82,7 +82,7 @@ export default class HomeComponent extends Component {
 
     render(){
         return(
-            <div style={{paddingTop: '100px'}}>
+            <div style={{textAlign: 'center'}}>
                { this.getCard() }
             </div>
         )
