@@ -14,10 +14,10 @@ contract('CryptoTrader', (accounts) => {
         contractInstance = await CryptoTrader.new();
     });
 
-    it('should get the token price', async () => {
-        const result = await contractInstance.getPrice();
-        assert.typeOf(result.words[0], 'number');
-    });
+    // it('should get the token price', async () => {
+    //     const result = await contractInstance.getPrice();
+    //     assert.typeOf(result.words[0], 'number');
+    // });
 
     it('should be able to join a competition', async () => {
         const originalBalance = await web3.eth.getBalance(alice);
