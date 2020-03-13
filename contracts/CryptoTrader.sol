@@ -19,7 +19,7 @@ contract CryptoTrader is CryptoTraderInternal {
     /// @return void
     function leaveCompetition(
         uint _competitionId
-    ) external payable isFutureCompetition(_competitionId) isParticipant(msg.sender, _competitionId) {
+    ) external isFutureCompetition(_competitionId) isParticipant(msg.sender, _competitionId) {
         uint index = _findIndexOf(competitionToTraders[_competitionId], msg.sender);
         _removeAtIndex(competitionToTraders[_competitionId], index);
         msg.sender.transfer(participationFee);
