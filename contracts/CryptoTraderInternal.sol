@@ -40,7 +40,6 @@ contract CryptoTraderInternal is CryptoTraderBase {
     /// @return uint
     function _getTotalBalance(uint _competitionId, address _trader) internal view returns (uint) {
         return competitionToTraderToCurrencyToBalance[_competitionId][_trader][virtualCurrency] +
-            competitionToTraderToCurrencyToBalance[_competitionId][_trader][realCurrency] /
-            getPrice();
+            _getVirtualCurrencyAmount(competitionToTraderToCurrencyToBalance[_competitionId][_trader][realCurrency]);
     }
 }

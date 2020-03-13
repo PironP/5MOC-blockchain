@@ -60,12 +60,12 @@ contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper, PriceHelper {
         _;
     }
 
-    modifier hasSufficientBalance(bool _buy, address _trader, uint _amount) {
+    modifier hasSufficientBalance(bool _buy, address _trader, uint _weiAmount) {
         if (true == _buy) {
-            uint virtualCurrencyAmount = getPrice() * _amount / (10 ** 16); // in centimes
+            uint virtualCurrencyAmount = _getVirtualCurrencyAmount(_weiAmount);
             require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][virtualCurrency] >= virtualCurrencyAmount, "Not sufficient virtual currency balance to buy");
         } else {
-            require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][realCurrency] >= _amount, "Not sufficient real currency balance to sell");
+            require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][realCurrency] >= _weiAmount, "Not sufficient real currency balance to sell");
         }
         _;
     }
