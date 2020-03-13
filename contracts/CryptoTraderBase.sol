@@ -9,15 +9,15 @@ import "./Helper/PriceHelper.sol";
 /// @author Quentin Brunet, Pierre Piron, Léo Legron, Prescilla Lecurieux
 /// @notice Student project, may contain bugs and security issues.
 contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper, PriceHelper {
-    mapping (uint => mapping (address => mapping (string => uint))) competitionToTraderToCurrencyToBalance;
-    mapping (uint => address[]) competitionToTraders;
+    mapping (uint => mapping (address => mapping (string => uint))) public competitionToTraderToCurrencyToBalance;
+    mapping (uint => address[]) public competitionToTraders;
 
-    string virtualCurrency = "TraderCoin";
-    string realCurrency = "Ethereum";
-    uint currentCompetition = 1;
-    uint startTimestamp = now;
-    uint competitionDuration = 7 days;
-    uint participationFee = 0.001 ether;
+    string public virtualCurrency = "TraderCoin";
+    string public realCurrency = "Ethereum";
+    uint public currentCompetition = 1;
+    uint public startTimestamp = now;
+    uint public competitionDuration = 7 days;
+    uint public participationFee = 0.001 ether;
 
     event CloseCompetition(address winner, address[] traders, uint[] balances);
 
