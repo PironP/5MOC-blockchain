@@ -13,7 +13,7 @@ import "./App.css";
 
 import HomeComponent from './components/Home/HomeComponent'
 import StatisticComponent from './components/Statistic/StatisticComponent'
-import TradesComponent from './components/Trades/TradesComponent'
+import CompetitionComponent from './components/Competition/CompetitionComponent'
 
 class App extends Component {
   state = { web3: null, accounts: null, contract: null };
@@ -60,11 +60,11 @@ class App extends Component {
                   <Link to="/statistic">Statistic</Link>
                 </li>
                 <li>
-                  <Link to="/trades">Trades</Link>
+                  <Link to="/competition">Competition</Link>
                 </li>
               </ul>
             </nav>
-  
+
             <Switch>
               <Route path="/">
                   <HomeComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
@@ -72,8 +72,8 @@ class App extends Component {
               <Route path="/statistic">
                 <StatisticComponent />
               </Route>
-              <Route path="/trades">
-                <TradesComponent />
+              <Route path="/competition">
+                <CompetitionComponent />
               </Route>
             </Switch>
           </div>

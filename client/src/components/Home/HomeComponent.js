@@ -10,10 +10,10 @@ export default class HomeComponent extends Component {
     }
 
     setPrice = async (contract) => {
-        console.log(contract)
-        const price = await contract.methods.getPrice().call()
+        console.log(contract);
+        const price = await contract.methods.getPrice().call();
         this.setState({price: price})
-    }
+    };
 
     componentDidMount(){
         this.setPrice(this.props.contract)
