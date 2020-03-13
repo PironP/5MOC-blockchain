@@ -8,9 +8,15 @@ contract PriceHelper {
 
     OSM osmInstance = OSM(OSMKovan);
 
-    /// @notice Allow anyone to get real currency current price in Ether.
+    /// @notice Allow anyone to get real currency current price in Wei.
     /// @return uint
     function getPrice() public view returns (uint) {
         return uint(osmInstance.read()) ;
+    }
+
+    /// @notice Allow to convert wei to usd dollar centimes.
+    /// @return uint
+    function _getVirtualCurrencyAmount(uint _weiAmount) internal view returns (uint) {
+        return (getPrice() / 10 ** 18) * _weiAmount / (10 ** 16);
     }
 }
