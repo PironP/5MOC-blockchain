@@ -15,6 +15,7 @@ import "./App.css";
 import HomeComponent from './components/Home/HomeComponent'
 import StatisticComponent from './components/Statistic/StatisticComponent'
 import CompetitionComponent from './components/Competition/CompetitionComponent'
+import TradeComponent from './components/TradeComponent/TradeComponent'
 
 class App extends Component {
   state = { web3: null, accounts: null, contract: null };
@@ -56,6 +57,11 @@ class App extends Component {
               <h3 className="appName">Crypto Trader</h3>
               <nav>
                 <ul>
+                <Link to="/trade" className="navButton">
+                    <Button variant="contained" color="primary">
+                      TRADE
+                    </Button>
+                  </Link>
                   <Link to="/account" className="navButton">
                     <Button variant="contained" color="primary">
                       Home
@@ -76,6 +82,9 @@ class App extends Component {
             </div>
             <div className="App">
               <Switch>
+              <Route path="/trade">
+                    <TradeComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
+                </Route>
                 <Route path="/account">
                     <HomeComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
                 </Route>
