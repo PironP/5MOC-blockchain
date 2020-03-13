@@ -76,9 +76,6 @@ class App extends Component {
             </div>
             <div className="App">
               <Switch>
-                <Route path="/">
-                  <h1 className="welcomeDiv">Welcome to Crypto Trader</h1>
-                </Route>
                 <Route path="/account">
                     <HomeComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
                 </Route>
@@ -87,6 +84,9 @@ class App extends Component {
                 </Route>
                 <Route path="/competition">
                   <CompetitionComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
+                </Route>
+                <Route path="/">
+                  <h1 className="welcomeDiv">Welcome to Crypto Trader</h1>
                 </Route>
               </Switch>        
             </div>
