@@ -20,10 +20,10 @@ contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper {
 
     event CloseCompetition(address winner, address[] traders, uint[] balances);
 
-    /// @notice Allow anyone to get current real currency price.
+    /// @notice Allow anyone to get real currency current price in Ether.
     /// @return uint
+    /// @dev TODO: implement price feeder method
     function getPrice() public view returns (uint) {
-        // TODO: implement price feeder method
         return _random();
     }
 
@@ -68,7 +68,8 @@ contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper {
 
     modifier hasSufficientBalance(bool _buy, address _trader, uint _amount) {
         if (true == _buy) {
-            require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][virtualCurrency] >= _amount * getPrice(), "Not sufficient virtual currency balance to buy");
+            uint virtualCurrencyAmount = getPrice() * _amount / (10 ** 16); // in centimes
+            require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][virtualCurrency] >= virtualCurrencyAmount, "Not sufficient virtual currency balance to buy");
         } else {
             require(competitionToTraderToCurrencyToBalance[currentCompetition][_trader][realCurrency] >= _amount, "Not sufficient real currency balance to sell");
         }
