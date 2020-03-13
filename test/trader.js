@@ -41,6 +41,14 @@ contract('CryptoTrader', (accounts) => {
         assert.equal(originalBalance, parseInt(newBalance) + await computeGasCost(web3, txInfoJoin) + await computeGasCost(web3, txInfoLeave));
     });
 
+    it('should be able to get list of traders', async () => {
+        const txInfoJoin = await contractInstance.joinCompetition(2, { from: alice, value: web3.utils.toWei('0.001') });
+        const txInfoGet = await contractInstance.getTraders(2);
+
+        assert.equal(txInfoJoin.receipt.status, true);
+        assert.equal(txInfoGet.length, 1);
+    });
+
     it('should not be able to join a past or running competition', async () => {
         catchRevert(contractInstance.joinCompetition(1, { from: alice, value: web3.utils.toWei('0.001') }));
     });
