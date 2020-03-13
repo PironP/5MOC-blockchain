@@ -27,13 +27,13 @@ contract CryptoTrader is CryptoTraderInternal {
 
     /// @notice Allow trader to make a trader (buy or sell).
     /// @param _buy (true => buy / false => sell)
-    /// @param _amount (real currency amount to buy/sell)
+    /// @param _amount (real currency amount to buy/sell in Wei)
     /// @return void
     function trade(
         bool _buy,
         uint _amount
     ) external isParticipant(msg.sender, currentCompetition) hasSufficientBalance(_buy, msg.sender, _amount) {
-        uint virtualCurrencyAmount = getPrice() * _amount;
+        uint virtualCurrencyAmount = getPrice() * _amount / (10 ** 16); // in centimes
 
         if (_buy) {
             competitionToTraderToCurrencyToBalance[currentCompetition][msg.sender][virtualCurrency] -= virtualCurrencyAmount;
