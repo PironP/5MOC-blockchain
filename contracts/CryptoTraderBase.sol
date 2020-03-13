@@ -3,11 +3,12 @@ pragma solidity >=0.4.21 <0.7.0;
 import "./Ownable/Ownable.sol";
 import "./Helper/ArrayHelper.sol";
 import "./Helper/RandomHelper.sol";
+import "./Helper/PriceHelper.sol";
 
 /// @title BaseContract for CryptoTrader. Defines mappings, variables, events and modifiers.
 /// @author Quentin Brunet, Pierre Piron, Léo Legron, Prescilla Lecurieux
 /// @notice Student project, may contain bugs and security issues.
-contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper {
+contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper, PriceHelper {
     mapping (uint => mapping (address => mapping (string => uint))) competitionToTraderToCurrencyToBalance;
     mapping (uint => address[]) competitionToTraders;
 
@@ -19,13 +20,6 @@ contract CryptoTraderBase is Ownable, ArrayHelper, RandomHelper {
     uint participationFee = 0.001 ether;
 
     event CloseCompetition(address winner, address[] traders, uint[] balances);
-
-    /// @notice Allow anyone to get real currency current price in Ether.
-    /// @return uint
-    /// @dev TODO: implement price feeder method
-    function getPrice() public view returns (uint) {
-        return _random();
-    }
 
     /// @notice Check if trader participate to given competition.
     /// @param _trader (trader address)

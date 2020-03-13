@@ -1,0 +1,818 @@
+{
+  "contractName": "PriceHelper",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.1+commit.e6f7d5a4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{\"getPrice()\":{\"notice\":\"Allow anyone to get real currency current price in Ether.\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/quentin/Documents/work/school/5AMOC/Blockchain/5MOC-blockchain/contracts/Helper/PriceHelper.sol\":\"PriceHelper\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/quentin/Documents/work/school/5AMOC/Blockchain/5MOC-blockchain/contracts/Helper/PriceHelper.sol\":{\"keccak256\":\"0x5284bf30d772bfabe9c2ee2f0f568ba24b563628e30f715b3aa282cb5b84d185\",\"urls\":[\"bzz-raw://8cc7e3450a40b6077c00ba642bdb9bd07d6be4caed450edd067c21083133b6f8\",\"dweb:/ipfs/QmTzTjzNrbjAVfqRzZt6QgGZCnBbaDA2ioxaLmTLi44L83\"]},\"/Users/quentin/Documents/work/school/5AMOC/Blockchain/5MOC-blockchain/contracts/OSM/OSM.sol\":{\"keccak256\":\"0x8f602c6218d4982b92a8d231bbe96dc75d060566f5f14d25f0899a7ec3cc7264\",\"urls\":[\"bzz-raw://c3e16b021846e58df442923a7bd16850d736456ccc63e2dc35e65a4092b7cd77\",\"dweb:/ipfs/QmUNTefcGFVrvcgafRMQg2tnKzpEjdpqfXge9qzr9UpUZz\"]}},\"version\":1}",
+  "bytecode": "0x6080604052739fffe440258b79c5d6604001674a4722ffc0f7bc6000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055507381fe72b5a8d1a857d176c3e7d5bd2679a9b85763600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555034801561011b57600080fd5b506101298061012b6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806398d5fdca14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166357de26a46040518163ffffffff1660e01b815260040160206040518083038186803b15801560b257600080fd5b505afa15801560c5573d6000803e3d6000fd5b505050506040513d602081101560da57600080fd5b810190808051906020019092919050505060001c90509056fea2646970667358221220338043a2e7918f29d5f8199a2c38452940cc070260a9ba08aa1234006e8b05e664736f6c63430006010033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806398d5fdca14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166357de26a46040518163ffffffff1660e01b815260040160206040518083038186803b15801560b257600080fd5b505afa15801560c5573d6000803e3d6000fd5b505050506040513d602081101560da57600080fd5b810190808051906020019092919050505060001c90509056fea2646970667358221220338043a2e7918f29d5f8199a2c38452940cc070260a9ba08aa1234006e8b05e664736f6c63430006010033",
+  "sourceMap": "60:395:5:-:0;;;106:42;87:61;;;;;;;;;;;;;;;;;;;;175:42;154:63;;;;;;;;;;;;;;;;;;;;246:8;;;;;;;;;;;224:31;;;;;;;;;;;;;;;;;;;;60:395;8:9:-1;5:2;;;30:1;27;20:12;5:2;60:395:5;;;;;;;",
+  "deployedSourceMap": "60:395:5:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;60:395:5;;;;;;;;;;;;;;;;;;;357:96;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;398:4;426:11;;;;;;;;;;;:16;;;:18;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;426:18:5;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;426:18:5;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;426:18:5;;;;;;;;;;;;;;;;421:24;;414:31;;357:96;:::o",
+  "source": "pragma solidity >=0.4.21 <0.7.0;\n\nimport \"../OSM/OSM.sol\";\n\ncontract PriceHelper {\n    address OSMKovan = 0x9FfFE440258B79c5d6604001674A4722FfC0f7Bc;\n    address OSMMainNet = 0x81FE72B5A8d1A857d176C3E7d5Bd2679A9B85763;\n\n    OSM osmInstance = OSM(OSMKovan);\n\n    /// @notice Allow anyone to get real currency current price in Ether.\n    /// @return uint\n    function getPrice() public view returns (uint) {\n        return uint(osmInstance.read()) ;\n    }\n}\n",
+  "sourcePath": "/Users/quentin/Documents/work/school/5AMOC/Blockchain/5MOC-blockchain/contracts/Helper/PriceHelper.sol",
+  "ast": {
+    "absolutePath": "/Users/quentin/Documents/work/school/5AMOC/Blockchain/5MOC-blockchain/contracts/Helper/PriceHelper.sol",
+    "exportedSymbols": {
+      "PriceHelper": [
+        756
+      ]
+    },
+    "id": 757,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 730,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:5"
+      },
+      {
+        "absolutePath": "/Users/quentin/Documents/work/school/5AMOC/Blockchain/5MOC-blockchain/contracts/OSM/OSM.sol",
+        "file": "../OSM/OSM.sol",
+        "id": 731,
+        "nodeType": "ImportDirective",
+        "scope": 757,
+        "sourceUnit": 1176,
+        "src": "34:24:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 756,
+        "linearizedBaseContracts": [
+          756
+        ],
+        "name": "PriceHelper",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 734,
+            "name": "OSMKovan",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 756,
+            "src": "87:61:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 732,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "87:7:5",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "307839466646453434303235384237396335643636303430303136373441343732324666433066374263",
+              "id": 733,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "106:42:5",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              },
+              "value": "0x9FfFE440258B79c5d6604001674A4722FfC0f7Bc"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 737,
+            "name": "OSMMainNet",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 756,
+            "src": "154:63:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 735,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "154:7:5",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "307838314645373242354138643141383537643137364333453764354264323637394139423835373633",
+              "id": 736,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "175:42:5",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              },
+              "value": "0x81FE72B5A8d1A857d176C3E7d5Bd2679A9B85763"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 742,
+            "name": "osmInstance",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 756,
+            "src": "224:31:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_OSM_$1175",
+              "typeString": "contract OSM"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 738,
+              "name": "OSM",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1175,
+              "src": "224:3:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OSM_$1175",
+                "typeString": "contract OSM"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "arguments": [
+                {
+                  "argumentTypes": null,
+                  "id": 740,
+                  "name": "OSMKovan",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 734,
+                  "src": "246:8:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                ],
+                "id": 739,
+                "name": "OSM",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 1175,
+                "src": "242:3:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_contract$_OSM_$1175_$",
+                  "typeString": "type(contract OSM)"
+                }
+              },
+              "id": 741,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": false,
+              "kind": "typeConversion",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "242:13:5",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OSM_$1175",
+                "typeString": "contract OSM"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 754,
+              "nodeType": "Block",
+              "src": "404:49:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 749,
+                            "name": "osmInstance",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 742,
+                            "src": "426:11:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_OSM_$1175",
+                              "typeString": "contract OSM"
+                            }
+                          },
+                          "id": 750,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "read",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 1174,
+                          "src": "426:16:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_view$__$returns$_t_bytes32_$",
+                            "typeString": "function () view external returns (bytes32)"
+                          }
+                        },
+                        "id": 751,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "426:18:5",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 748,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "421:4:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_uint256_$",
+                        "typeString": "type(uint256)"
+                      },
+                      "typeName": {
+                        "id": 747,
+                        "name": "uint",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "421:4:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": null,
+                          "typeString": null
+                        }
+                      }
+                    },
+                    "id": 752,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "421:24:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 746,
+                  "id": 753,
+                  "nodeType": "Return",
+                  "src": "414:31:5"
+                }
+              ]
+            },
+            "documentation": "@notice Allow anyone to get real currency current price in Ether.\n @return uint",
+            "functionSelector": "98d5fdca",
+            "id": 755,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPrice",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 743,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "374:2:5"
+            },
+            "returnParameters": {
+              "id": 746,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 745,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 755,
+                  "src": "398:4:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 744,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "398:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "397:6:5"
+            },
+            "scope": 756,
+            "src": "357:96:5",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 757,
+        "src": "60:395:5"
+      }
+    ],
+    "src": "0:456:5"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/quentin/Documents/work/school/5AMOC/Blockchain/5MOC-blockchain/contracts/Helper/PriceHelper.sol",
+    "exportedSymbols": {
+      "PriceHelper": [
+        756
+      ]
+    },
+    "id": 757,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 730,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:5"
+      },
+      {
+        "absolutePath": "/Users/quentin/Documents/work/school/5AMOC/Blockchain/5MOC-blockchain/contracts/OSM/OSM.sol",
+        "file": "../OSM/OSM.sol",
+        "id": 731,
+        "nodeType": "ImportDirective",
+        "scope": 757,
+        "sourceUnit": 1176,
+        "src": "34:24:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 756,
+        "linearizedBaseContracts": [
+          756
+        ],
+        "name": "PriceHelper",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 734,
+            "name": "OSMKovan",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 756,
+            "src": "87:61:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 732,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "87:7:5",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "307839466646453434303235384237396335643636303430303136373441343732324666433066374263",
+              "id": 733,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "106:42:5",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              },
+              "value": "0x9FfFE440258B79c5d6604001674A4722FfC0f7Bc"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 737,
+            "name": "OSMMainNet",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 756,
+            "src": "154:63:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 735,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "154:7:5",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "307838314645373242354138643141383537643137364333453764354264323637394139423835373633",
+              "id": 736,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "175:42:5",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              },
+              "value": "0x81FE72B5A8d1A857d176C3E7d5Bd2679A9B85763"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 742,
+            "name": "osmInstance",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 756,
+            "src": "224:31:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_OSM_$1175",
+              "typeString": "contract OSM"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 738,
+              "name": "OSM",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1175,
+              "src": "224:3:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OSM_$1175",
+                "typeString": "contract OSM"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "arguments": [
+                {
+                  "argumentTypes": null,
+                  "id": 740,
+                  "name": "OSMKovan",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 734,
+                  "src": "246:8:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                ],
+                "id": 739,
+                "name": "OSM",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 1175,
+                "src": "242:3:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_contract$_OSM_$1175_$",
+                  "typeString": "type(contract OSM)"
+                }
+              },
+              "id": 741,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": false,
+              "kind": "typeConversion",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "242:13:5",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OSM_$1175",
+                "typeString": "contract OSM"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 754,
+              "nodeType": "Block",
+              "src": "404:49:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 749,
+                            "name": "osmInstance",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 742,
+                            "src": "426:11:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_OSM_$1175",
+                              "typeString": "contract OSM"
+                            }
+                          },
+                          "id": 750,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "read",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 1174,
+                          "src": "426:16:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_view$__$returns$_t_bytes32_$",
+                            "typeString": "function () view external returns (bytes32)"
+                          }
+                        },
+                        "id": 751,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "426:18:5",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 748,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "421:4:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_uint256_$",
+                        "typeString": "type(uint256)"
+                      },
+                      "typeName": {
+                        "id": 747,
+                        "name": "uint",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "421:4:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": null,
+                          "typeString": null
+                        }
+                      }
+                    },
+                    "id": 752,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "421:24:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 746,
+                  "id": 753,
+                  "nodeType": "Return",
+                  "src": "414:31:5"
+                }
+              ]
+            },
+            "documentation": "@notice Allow anyone to get real currency current price in Ether.\n @return uint",
+            "functionSelector": "98d5fdca",
+            "id": 755,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPrice",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 743,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "374:2:5"
+            },
+            "returnParameters": {
+              "id": 746,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 745,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 755,
+                  "src": "398:4:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 744,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "398:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "397:6:5"
+            },
+            "scope": 756,
+            "src": "357:96:5",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 757,
+        "src": "60:395:5"
+      }
+    ],
+    "src": "0:456:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.1+commit.e6f7d5a4.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-03-13T10:41:43.509Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {
+      "getPrice()": {
+        "notice": "Allow anyone to get real currency current price in Ether."
+      }
+    }
+  }
+}
