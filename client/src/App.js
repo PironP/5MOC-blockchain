@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 import FakeTraderContract from "./contracts/CryptoTrader.json";
 import getWeb3 from "./getWeb3";
@@ -49,50 +50,43 @@ class App extends Component {
   render() {
     if(this.state.web3 != null){
       return (
-        <Router>
-          {/* <Button onClick={toggleDrawer('left', true)}>Open Left</Button>
-          <Button onClick={toggleDrawer('right', true)}>Open Right</Button>
-          <Button onClick={toggleDrawer('top', true)}>Open Top</Button>
-          <Button onClick={toggleDrawer('bottom', true)}>Open Bottom</Button>
-          <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-            {sideList('left')}
-          </Drawer>
-          <Drawer anchor="top" open={state.top} onClose={toggleDrawer('top', false)}>
-            {fullList('top')}
-          </Drawer>
-          <Drawer anchor="bottom" open={state.bottom} onClose={toggleDrawer('bottom', false)}>
-            {fullList('bottom')}
-          </Drawer>
-          <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
-            {sideList('right')}
-          </Drawer> */}
-          <div>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/account">Home</Link>
-                </li>
-                <li>
-                  <Link to="/statistic">Statistic</Link>
-                </li>
-                <li>
-                  <Link to="/competition">Competition</Link>
-                </li>
-              </ul>
-            </nav>
-
-            <Switch>
-              <Route path="/account">
-                  <HomeComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
-              </Route>
-              <Route path="/statistic">
-                <StatisticComponent />
-              </Route>
-              <Route path="/competition">
-                <CompetitionComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
-              </Route>
-            </Switch>
-          </div>
+        <Router> {
+          <div className="App">
+            <div className="navBar">
+              <h3 className="appName">Crypto Trader</h3>
+              <nav>
+                <ul>
+                  <Link to="/account" className="navButton">
+                    <Button variant="contained" color="primary">
+                      Home
+                    </Button>
+                  </Link>
+                  <Link to="/statistic" className="navButton">
+                    <Button variant="contained" color="primary">
+                      Statistic
+                    </Button>
+                  </Link>
+                  <Link to="/competition" className="navButton">
+                    <Button variant="contained" color="primary">
+                      Competition
+                    </Button>
+                  </Link>
+                </ul>
+              </nav>
+            </div>
+              <Switch>
+                <Route path="/account">
+                    <HomeComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
+                </Route>
+                <Route path="/statistic">
+                  <StatisticComponent />
+                </Route>
+                <Route path="/competition">
+                  <CompetitionComponent web3={this.state.web3} accounts={this.state.accounts} contract={this.state.contract} />
+                </Route>
+              </Switch>        
+            </div>
+          }
         </Router>
       )
     } else {
