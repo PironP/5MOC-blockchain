@@ -11,7 +11,7 @@ contract CryptoTrader is CryptoTraderInternal {
     function joinCompetition(
         uint _competitionId
     ) external payable isFutureCompetition(_competitionId) isNotParticipant(msg.sender, _competitionId) {
-        require(participationFee == msg.value, "Please send the required participation fee.");
+        require(participationFee == msg.value, "Please send the required participation fee");
         competitionToTraders[_competitionId].push(msg.sender);
     }
 
