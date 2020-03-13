@@ -74,7 +74,7 @@ class App extends Component {
                   </Link> */}
                   <Link to="/competition" className="navButton">
                     <Button variant="contained" color="primary">
-                      Competition
+                      Traders
                     </Button>
                   </Link>
                 </ul>
