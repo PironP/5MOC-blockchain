@@ -21,7 +21,7 @@ contract CryptoTraderInternal is CryptoTraderBase {
     /// @notice Find the competition winner (the one who has the bigger balance) and return it.
     /// @return address (winner)
     function _getWinner(address[] memory traders, uint[] memory balances) internal pure returns (address) {
-        if (0 == balances[0]) {
+        if (0 == balances.length) {
             return address(0);
         }
 
@@ -55,10 +55,9 @@ contract CryptoTraderInternal is CryptoTraderBase {
             balances[i] = _getTotalBalance(currentCompetition, traders[i]);
         }
 
-        // address winner = _getWinner(traders, balances);
-        // address(uint160(winner))
-        // winner.transfer(address(uint160(address(this))).balance);
-        // emit CloseCompetition(winner, traders, balances);
+        address winner = _getWinner(traders, balances);
+        address(uint160(winner)).transfer(address(this).balance);
+        emit CloseCompetition(winner, traders, balances);
 
         _restartCompetition();
     }
