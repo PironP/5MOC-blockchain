@@ -42,17 +42,17 @@ export default class HomeComponent extends Component {
     }
 
     joinCompetition = async (id) => {
-        const res = await this.props.contract.methods.joinCompetition(id).send({from: this.props.accounts[0], value: this.props.web3.utils.toWei('0.001')})
+        this.props.contract.methods.joinCompetition(id).send({from: this.props.accounts[0], value: this.props.web3.utils.toWei('0.001')})
         .then(res => {
-            this.setData()
+            this.setData(this.props.contract)
         })
         .catch(console.error)
     }
 
     leaveCompetition = async (id) => {
-        this.props.contract.methods.leaveCompetition(id).send({from: this.props.accounts[0], value: this.props.web3.utils.toWei('0.001')})
+        this.props.contract.methods.leaveCompetition(id).send({from: this.props.accounts[0]})
         .then(res => {
-            this.setData()
+            this.setData(this.props.contract)
         })
         .catch(console.error)
     }
